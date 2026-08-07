@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+// Inclui os estilos fundamentais do Angular Material
+@include mat.core();
+
+// Define as paletas usando os novos nomes da API
+$custom-app-primary: mat.define-palette(mat.$blue-palette);
+$custom-app-secondary: mat.define-palette(mat.$indigo-palette, A200, A400, 700);
+$custom-app-warn: mat.define-palette(mat.$red-palette);
+
+// Cria o tema light com a estrutura em mapa exigida nas versões recentes
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-app-primary,
+    accent: $custom-app-secondary,
+    warn: $custom-app-warn,
+  )
+));
+
+// Aplica o tema a todos os componentes do Material
+@include mat.all-component-themes($custom-theme);
+
+// Estilos globais
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
